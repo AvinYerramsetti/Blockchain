@@ -23,22 +23,22 @@ class BlockChain{
             return false;
         };    
 
-        // // for(let i=1; i<chain.length; i++)
-        // // {
-        // //     const {timeStamp, lastHash, hash, data}= chain[i];
+        for(let i=1; i<chain.length; i++)
+        {
+            const {timeStamp, lastHash, hash, data}= chain[i];
 
-        // //     const actualLastHash = chain[i-1].hash;
+            const actualLastHash = chain[i-1].hash;
 
             
 
-        // //     if(lastHash!== actualLastHash) return false;
+            if(lastHash!== actualLastHash) return false;
 
 
-        // //     const validatedHash = cryptoHash(timeStamp, lastHash, data);
+            const validatedHash = cryptoHash(timeStamp, lastHash, data);
 
 
-        // //     if(hash!==validatedHash) return false;
-        // }
+            if(hash!==validatedHash) return false;
+        }
        return true;
  }
 
