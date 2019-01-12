@@ -20,7 +20,7 @@ class BlockChain{
     replaceChain(chain){
         if(chain.length<=this.chain.length){
             console.log(JSON.stringify(chain,null,4) + ' vs ' + JSON.stringify(this.chain,null,4))
-            console.error('The incoming chain must be longer');
+            console.error('The incoming chain must be longer ');
             return;
         }
         if(!BlockChain.isValidChain(chain)){
