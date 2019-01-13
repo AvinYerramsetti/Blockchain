@@ -3,7 +3,7 @@ const Blockchain = require ('./blockchain.test');
 const blockchain = new Blockchain();
 
 blockchain.addBlock({data: 'initial'});
-
+console.log('first block', blockchain.chain[blockchain.chain.length-1]);
 let prevTimestamp, nextTimestamp, nextBlock, timeDiff, average;
 
 const times=[];
@@ -23,3 +23,4 @@ average = times.reduce((total, num)=>(total+num))/times.length;
 console.log(`Time to mine block: ${timeDiff}ms.Difficulty: ${nextblock.difficulty}. Average Time: ${average}.ms`);
 
 }
+  
