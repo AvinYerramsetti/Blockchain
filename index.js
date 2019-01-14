@@ -1,7 +1,7 @@
 const express = require('express');
-const bodyParser = require('body-parser'); 
+const bodyParser = require('body-parser');
 const Blockchain = require('./blockchain');
-
+const path = require('path');
 const app = express();
 const blockchain = new Blockchain;
 
@@ -16,6 +16,11 @@ app.post('/api/mine', (req,res)=>{
     blockchain.addBlock({data});
 
     res.redirect('api/blocks');
+});
+
+//for the docuemnt
+app.get('*', (req,res)=>{
+    res.sendFile(path.join(__dirname,'./client/index.html'));
 });
 
 const PORT = 3000;
