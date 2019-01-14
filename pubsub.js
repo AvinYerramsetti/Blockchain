@@ -14,15 +14,15 @@ const CHANNELS = {
 class PubSub{
     construct(){
         
-        this.pubNub = new PubNub(credentials);
+        this.pubnub = new PubNub(credentials);
         this.pubnub.subscribe({channels:Object.values(CHANNELS)});
         this.pubnub.addListener((this.listener()));
         
     }
     listener() {
         return{
-            message:messageObject=>{
-                const {channel, message} = messageObject;
+            message: messageObject=>{
+                const { channel, message} = messageObject;
                 console.log(`Message received.Channel:${channel}. Message: ${message}`);
             }
         };
@@ -30,7 +30,8 @@ class PubSub{
     }
     publish({ channel, message}){
         //console.log("here"+ this.pubnub);
-        this.pubnub.publish({channel,message});
+        this.pubnub.publish({ channel, message});
+        
     }
 }
 
