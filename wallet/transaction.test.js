@@ -51,7 +51,7 @@ describe ('Transaction',()=>{
         });
 
         it('sets the `address` to the `senderWallet` publicKey',()=>{
-            expect(transactiono.input.address).toEqual(senderWallet.publicKey);
+            expect(transaction.input.address).toEqual(senderWallet.publicKey);
         });
 
         it ('signs the input',()=>{
@@ -76,7 +76,7 @@ describe ('Transaction',()=>{
             describe('when the transaction is valid',()=>{
 
                 it('returns true',()=>{
-                    except(Transaction.validTransaction(transaction)).toBe(true);
+                    expect(Transaction.validTransaction(transaction)).toBe(true);
                 });
             });
 
@@ -85,8 +85,8 @@ describe ('Transaction',()=>{
 
                     it('returns false and logs an error',()=>{
                         transaction.outputMap[senderWallet.publicKey]=99999;
-                        except(Transaction.validTransaction(transaction)).toBe(false);
-                        except(errorMock).toHaveBeenCalled();
+                        expect(Transaction.validTransaction(transaction)).toBe(false);
+                        expect(errorMock).toHaveBeenCalled();
                     });
                 });
 
@@ -95,8 +95,8 @@ describe ('Transaction',()=>{
                         transaction.input.signature = new Wallet().sign('data');
 
 
-                        except(Transaction.validTransaction(transaction)).toBe(false);
-                        except(errorMock).toHaveBeenCalled();
+                        expect(Transaction.validTransaction(transaction)).toBe(false);
+                        expect(errorMock).toHaveBeenCalled();
 
                 });
             });
