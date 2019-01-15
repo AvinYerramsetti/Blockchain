@@ -6,7 +6,7 @@ const app = express();
 const blockchain = new Blockchain;
 
 app.use(bodyParser.json());
-
+app.use(express.static(path.join((__dirname,'client/dist'))));
 app.get('/api/blocks', (req, res)=>{
     res.json(blockchain.chain);
 });
@@ -18,9 +18,9 @@ app.post('/api/mine', (req,res)=>{
     res.redirect('api/blocks');
 });
 
-//for the docuemnt
+//send response to the static file
 app.get('*', (req,res)=>{
-    res.sendFile(path.join(__dirname,'./client/index.html'));
+    res.sendFile(path.join(__dirname,'client/dist/index.html'));
 });
 
 const PORT = 3000;
