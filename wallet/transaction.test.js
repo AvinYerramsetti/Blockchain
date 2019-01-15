@@ -20,7 +20,7 @@ describe ('Transaction',()=>{
 
     describe('outputMap',()=>{
         it('has an `outputMap`',()=>{
-            expect(transaction).toHaveProperty(outputMap);
+            expect(transaction).toHaveProperty('outputMap');
         });
 
 
