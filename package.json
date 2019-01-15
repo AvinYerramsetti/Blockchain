@@ -5,7 +5,11 @@
   "scripts": {
     "test": "jest --watchAll",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "dev-peer": "cross-env GENERATE_PEER_PORT='true' nodemon insex.js"
+  },
+  "jest":{
+    "testEnvironment":"node"
   },
   "keywords": [],
   "author": "",
@@ -16,9 +20,12 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cross-env": "^5.2.0",
+    "elliptic": "^6.4.1",
     "express": "^4.16.3",
     "hex-to-binary": "^1.0.1",
-    "pubnub": "^4.21.6"
+    "pubnub": "^4.21.6",
+    "request": "^2.88.0"
   },
   "description": ""
 }
