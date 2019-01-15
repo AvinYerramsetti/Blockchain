@@ -1,6 +1,6 @@
-const Transaction = ('./transaction');
+const Transaction = require('./transaction.js');
 const Wallet = require('./index');
-const {verifySignature} = require('../util');   
+const {verifySignature} = require('../util');
 describe ('Transaction',()=>{
     let transaction, senderWallet, recipient, amount;
 
@@ -40,12 +40,12 @@ describe ('Transaction',()=>{
         {
             expect(transaction).toHaveProperty('input');
         });
-    
+
 
         it ('has a `timestamp` in the input',()=>{
 
             expect (transaction.input).toHaveProperty('timestamp');
-    }); 
+    });
         it('sets the `amount` to the  `senderWallet` balance',()=>{
             expect (transaction.input.amount).toEqual(senderWallet.balance);
         });
@@ -61,10 +61,10 @@ describe ('Transaction',()=>{
                     data: transaction.outputMap,
                     signature: transaction.input.signature
                 })).toBe(true);
-            
+
             });
-        });   
-        
+        });
+
         describe('validTransaction()',()=>{
             let errorMock;
 
@@ -85,7 +85,7 @@ describe ('Transaction',()=>{
 
                     it('returns false and logs an error',()=>{
                         transaction.outputMap[senderWallet.publicKey]=99999;
-                        except(Transaction.validTransaction(transaction)).toBe(false); 
+                        except(Transaction.validTransaction(transaction)).toBe(false);
                         except(errorMock).toHaveBeenCalled();
                     });
                 });
@@ -95,7 +95,7 @@ describe ('Transaction',()=>{
                         transaction.input.signature = new Wallet().sign('data');
 
 
-                        except(Transaction.validTransaction(transaction)).toBe(false); 
+                        except(Transaction.validTransaction(transaction)).toBe(false);
                         except(errorMock).toHaveBeenCalled();
 
                 });
@@ -109,4 +109,3 @@ describe ('Transaction',()=>{
 
 
 
-    

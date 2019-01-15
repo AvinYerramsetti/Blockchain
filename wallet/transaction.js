@@ -14,8 +14,8 @@ class Transaction{
      createOutputMap({senderWallet, recipient, amount}){
 
         const outputMap = {};
-        outMap[recipient]= amount;
-        outMap[senderWallet.publicKey] = senderWallet.balance- amount;
+         outputMap[recipient]= amount;
+         outputMap[senderWallet.publicKey] = senderWallet.balance- amount;
 
         return outputMap;
 
@@ -35,7 +35,7 @@ class Transaction{
 
         const outputTotal = Object.values(outputMap)
         .reduce((total, outputAmount) => total+outputAmount);
-      
+
         if(amount!= outputAmount){
             console.error(`Invalid transaction from ${address}`);
             return false;
@@ -48,7 +48,7 @@ class Transaction{
 
         return true;
 
-        
+
      }
 }
 
