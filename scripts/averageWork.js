@@ -1,4 +1,4 @@
-const Blockchain = require ('./blockchain.test');
+const Blockchain = require ('../blockchain');
 
 const blockchain = new Blockchain();
 
@@ -15,12 +15,12 @@ blockchain.addBlock({data: `block ${i}`});
 nextBlock = blockchain.chain[blockchain.chain.length-1];
 
 nextTimestamp = nextBlock.timestamp;
-timediff= nextTimestamp- prevTimestamp ;
+timeDiff= nextTimestamp- prevTimestamp ;
 times.push(timeDiff);
 
 average = times.reduce((total, num)=>(total+num))/times.length;
 
-console.log(`Time to mine block: ${timeDiff}ms.Difficulty: ${nextblock.difficulty}. Average Time: ${average}.ms`);
+console.log(`Time to mine block: ${timeDiff}ms.Difficulty: ${nextBlock.difficulty}. Average Time: ${average}.ms`);
 
 }
   
