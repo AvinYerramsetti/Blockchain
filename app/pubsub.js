@@ -63,7 +63,7 @@ class PubSub {
             break;
           case CHANNELS.TRANSACTION:
             if (!this.transactionPool.existingTransaction({
-              inputAddress: this.wallet.publishKey
+              inputAddress: this.wallet.publicKey
             })) {
               this.transactionPool.setTransaction(parsedMessage);
             }
