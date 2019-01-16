@@ -13,9 +13,12 @@ render() {
     const {address,balance} = this.state.walletInfo;
         return (
             <div>
+                <img className={'logo'} src={logo}></img>
                 <div>Welcome to the blockchain</div>
                 <div>address : {address}</div>
                 <div>balance: {balance}</div>
+                <br/>
+                <Blocks/>
         </div>
         );
     }
