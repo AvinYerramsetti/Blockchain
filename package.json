@@ -1,7 +1,7 @@
 {
   "name": "cryptochain",
-  "jest" : {
-    "testEnvironment" : "node"
+  "jest": {
+    "testEnvironment": "node"
   },
   "version": "1.0.0",
   "main": "index.js",
@@ -9,9 +9,10 @@
     "test": "jest --watchAll",
     "start": "npm run build-client && node index.js",
     "dev": "npm run dev-client && nodemon index.js",
-    "build-client": "npm run clean && parcel build client/src/index.html --out-dir client/dist",
-    "dev-client": "npm run clean && parcel client/src/index.html --out-dir client/dist",
-    "clean": "rm -rf .cache client/dist"
+    "build-client": "parcel build client/src/index.html --out-dir client/dist",
+    "dev-client": "parcel client/src/index.html --out-dir client/dist",
+    "clean": "rm -rf .cache client/dist",
+    "dev-peer": "cross-env GENERATE_PEER_PORT='true' ENV='development' nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -27,9 +28,11 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "body-parser": "^1.18.3",
+    "cross-env": "^5.2.0",
     "express": "^4.16.3",
     "hex-to-binary": "^1.0.1",
     "parcel-bundler": "^1.11.0",
+    "pubnub": "^4.21.7",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },
