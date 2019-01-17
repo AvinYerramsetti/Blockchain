@@ -17,7 +17,7 @@ class BlockChain{
         this.chain.push(newBlock);
     }
 
-    replaceChain(chain){
+    replaceChain(chain, onSuccess){
         if(chain.length<=this.chain.length){
             console.log(JSON.stringify(chain,null,4) + ' vs ' + JSON.stringify(this.chain,null,4))
             console.error('The incoming chain must be longer ');
@@ -26,7 +26,8 @@ class BlockChain{
         if(!BlockChain.isValidChain(chain)){
             console.error('The incoming chain must be valid');
             return;
-        }   
+        }  
+        if(onSuccess) onSuccess(); 
             console.log ('replacing the chain with', chain);
 
         this.chain= chain;

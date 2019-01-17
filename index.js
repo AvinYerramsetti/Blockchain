@@ -5,6 +5,7 @@ const PubSub = require('./app/pubsub');
 const request= require('request');
 const TransactionPool= require('./wallet/transaction-pool');
 const Wallet = require('./wallet');
+const TransactionMiner = require('./app/transaction-miner');
 
 
 
@@ -14,6 +15,8 @@ const blockchain = new Blockchain();
 const transactionPool = new TransactionPool();
 const wallet = new Wallet();
 const pubsub = new PubSub({blockchain, transactionPool, wallet});
+const transactionMiner = new TransactionMiner({blockchain, transactionPool, wallet, pubsub});
+
 
 setTimeout(()=>pubsub.broadcastChain(),1000);
 
@@ -30,11 +33,10 @@ app.get('/api/blocks', (req, res)=>{
 });
 
 app.post('/api/mine', (req,res)=>{
-    const {data }= req.body;
+    const {data}= req.body;
     blockchain.addBlock({data});
     pubsub.broadcastChain();
-
-    res.redirect('api/blocks');
+    res.redirect('/api/blocks');
 });
 
 app.post('/api/transact',(req, res)=>{
@@ -75,6 +77,10 @@ app.get('*', (req,res)=>{
     res.sendFile(path.join(__dirname,'client/dist/index.html'));
 });
 
+app.get('/api/mineTransactions',(req,res)=>{
+    transactionMiner.mineTransactions();
+    res.redirect('/api/blocks');
+});
 const syncWithRootState = () => {
     request({ url: `${ROOT_NODE_ADDRESS}/api/blocks` }, (error, response, body) => {
       if (!error && response.statusCode === 200) {
