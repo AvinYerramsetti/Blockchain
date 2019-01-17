@@ -51,11 +51,11 @@ app.post('/api/transact',(req, res)=>{
 
     }else{
          transaction = wallet.createTransaction({
-            recipient, 
+            recipient,
             amount,
             chain:blockchain.chain});
     }
-        } 
+        }
    catch(error)
     {
        return res.status(400).json({type:'error', message:error.message});
@@ -76,9 +76,9 @@ app.get('/api/transaction-pool-map',(req, res)=>{
 
 
 //send response to the static file
-app.get('*', (req,res)=>{
-    res.sendFile(path.join(__dirname,'client/dist/index.html'));
-});
+// app.get('*', (req,res)=>{
+//     res.sendFile(path.join(__dirname,'client/dist/index.html'));
+// });
 
 app.get('/api/mineTransactions',(req,res)=>{
     transactionMiner.mineTransactions();
@@ -88,7 +88,7 @@ const syncWithRootState = () => {
     request({ url: `${ROOT_NODE_ADDRESS}/api/blocks` }, (error, response, body) => {
       if (!error && response.statusCode === 200) {
         const rootChain = JSON.parse(body);
-  
+
         console.log('replace chain on a sync with', rootChain);
         blockchain.replaceChain(rootChain);
       }
@@ -98,7 +98,7 @@ const syncWithRootState = () => {
      {
         if (!error && response.statusCode === 200) {
           const rootTransactionPoolMap = JSON.parse(body);
-    
+
           console.log('replace transaction pool map on a sync with', rootTransactionPoolMap);
           transactionPool.setMap(rootTransactionPoolMap);
         }
