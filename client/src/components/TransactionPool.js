@@ -10,19 +10,19 @@ class TransactionPool extends Component {
     state = { transactionPoolMap: {} };
 
     fetchTransactionPoolMap = () => {
-        fetch(`${document.location.origin}/api/transaction-pool-map`)
+        fetch('http://localhost:3000/api/transaction-pool-map')
             .then(response => response.json())
             .then(json => this.setState({ transactionPoolMap: json }));
     }
 
     fetchMineTransactions = () => {
-        fetch(`${document.location.origin}/api/mine-transactions`)
+        fetch('http://localhost:3000/api/mineTransactions')
             .then(response => {
                 if (response.status === 200) {
                     alert('success');
                     history.push('/blocks');
                 } else {
-                    alert('The mine-transactions block request did not complete.');
+                    alert('The mineTransactions block request did not complete.');
                 }
             });
     }

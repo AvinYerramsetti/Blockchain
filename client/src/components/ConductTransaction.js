@@ -8,7 +8,7 @@ class ConductTransaction extends Component {
     state = { recipient: '', amount: 0, knownAddresses: [] };
 
     componentDidMount() {
-        fetch(`${document.location.origin}/api/known-addresses`)
+        fetch('http://localhost:3000/api/known-addresses')
             .then(response => response.json())
             .then(json => this.setState({ knownAddresses: json }));
     }
@@ -24,7 +24,7 @@ class ConductTransaction extends Component {
     conductTransaction = () => {
         const { recipient, amount } = this.state;
 
-        fetch(`${document.location.origin}/api/transact`, {
+        fetch('http://localhost:3000/api/transact', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ recipient, amount })
