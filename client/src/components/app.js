@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 class App extends Component{
     state = { walletInfo: {} };
     componentDidMount() {
-        fetch(`${document.location.origin}/api/wallet-info`)
+        fetch('http://localhost:3000/api/wallet-info')
             .then(response => response.json())
             .then(json => this.setState({ walletInfo: json }));
     }
